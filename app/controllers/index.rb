@@ -1,5 +1,10 @@
+before %r{\S*((new)|(edit))\S*} do
+  redirect '/login' if !user_authenticated?
+end
+
+
+
 get '/' do
   @session_status = !!session[:id]
-"INDEX"
-erb :index
+  erb :index
 end
