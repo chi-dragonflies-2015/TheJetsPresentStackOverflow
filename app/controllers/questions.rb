@@ -8,8 +8,8 @@ get '/questions/new' do
   erb :'/questions/new'
 end
 
-#add user auth
 post '/questions' do
+  redirect '/login' if !user_authenticated?
   question = Question.new(params[:new_question])
   if question.save
     redirect "/questions/#{question.id}"
@@ -23,16 +23,15 @@ get '/questions/:id' do
   erb :'/questions/show'
 end
 
-
-#add user auth
 get '/questions/:id/edit' do
   @question = Question.find(params[:id])
+  halt 401, "forbidden" if !user_authorized?(@question.id)
   erb :'/questions/edit'
 end
 
-#add user auth
 put '/questions/:id' do
   @question = Question.find(params[:id])
+  halt 401, "forbidden" if !user_authorized?(@question.id)
   if @question.update(params[:question])
     redirect "/questions/#{@question.id}"
   else
@@ -40,9 +39,9 @@ put '/questions/:id' do
   end
 end
 
-#add user auth
 delete '/questions/:id' do
   @question = Question.find(params[:id])
+  halt 401, "forbidden" if !user_authorized?(@question.id)
   @question.destroy
   redirect '/'
 end

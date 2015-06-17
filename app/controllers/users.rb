@@ -7,8 +7,9 @@ get '/users/login' do
 end
 
 post '/users/sessions' do
-  if User.authenticate(params[:email], params[:password])
-    session[:id] = User.find_by(email: params[:email]).id
+  user = User.authenticate(params[:email], params[:password])
+  if user
+    session[:id] = user.id
     redirect '/'
   else
     redirect '/users/login'
@@ -31,6 +32,8 @@ post '/users' do
   end
 end
 
+
+# This we want to make this a post
 get '/users/logout' do
   session[:id] = nil
   redirect '/'
