@@ -7,8 +7,9 @@ get '/users/login' do
 end
 
 post '/users/sessions' do
-  if User.authenticate(params[:email], params[:password])
-    session[:id] = User.find_by(email: params[:email]).id
+  user = User.authenticate(params[:email], params[:password])
+  if user
+    session[:id] = user.id
     redirect '/'
   else
     redirect '/users/login'
@@ -24,13 +25,17 @@ get '/users/new' do
 end
 
 post '/users' do
-  if User.create(params[:user])
+  user = User.new(params[:user])
+  if user.save
+    session[:id] = user.id
     redirect '/'
   else
     erb :'/users/new'
   end
 end
 
+
+# This we want to make this a post
 get '/users/logout' do
   session[:id] = nil
   redirect '/'
