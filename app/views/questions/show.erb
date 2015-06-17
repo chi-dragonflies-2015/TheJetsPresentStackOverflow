@@ -5,6 +5,11 @@
   <div class="debugger question-body">
     <div class="question-sidebar">
       <!-- put in votes, upvote buttons, and best answer check mark -->
+      <div class="vote">
+      <a href="/questions/:question_id/upvote"> Upvote</a>
+        <span class='vote_count'>[No. of votes]</span>
+      <a href="/questions/:question_id/downvote"> Downvote</a>
+      </div>
     </div>
     <div class="question-content">
       <p><%= @question.content %></p>
