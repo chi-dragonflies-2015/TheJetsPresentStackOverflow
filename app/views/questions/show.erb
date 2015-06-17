@@ -25,9 +25,20 @@
 </div>
 
 
+<% if user_authorized?(@question.asker.id) %>
+
+<div class="delete">
+  <form action="/questions/<%= @question.id %>/edit" method="get" class="question_delete" </form>
+  <input type="submit" value="Edit">
+  <form>
+</div>
+
+
 <div class="delete">
   <form action="/questions/<%= @question.id %>" method="post" class="question_delete" </form>
   <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Question!">
+  <input type="submit" value="Delete">
+  </form>
 </div>
 
+<% end %>
