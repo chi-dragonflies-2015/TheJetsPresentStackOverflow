@@ -30,3 +30,8 @@ post '/users' do
     erb :'/users/new'
   end
 end
+
+get '/users/logout' do
+  session[:id] = nil
+  redirect '/'
+end
