@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="question-title debugger">
+    <h1><%= @question.title %></h1>
+  </div>
+  <div class="debugger question-body">
+    <div class="question-sidebar">
+      <!-- put in votes, upvote buttons, and best answer check mark -->
+    </div>
+    <div class="question-content">
+      <p><%= @question.content %></p>
+    </div>
+  </div>
+  <div class="question-footer">
+    <div class="question-creator">
+    asked on @question.created_at
+    last updated on @question.updated_at
+    @question.user.first_name + " " + @question.user.last_name
+    </div>
+  </div>
+</div>
