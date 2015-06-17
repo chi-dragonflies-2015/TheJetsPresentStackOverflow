@@ -26,6 +26,7 @@ end
 
 post '/users' do
   if User.create(params[:user])
+    session[:id] = user.id
     redirect '/'
   else
     erb :'/users/new'

@@ -19,7 +19,8 @@
   </div>
 </div>
 
-<% if user_authorized?(@question.id) %>
+
+<% if user_authorized?(@question.asker.id) %>
 
 <div class="delete">
   <form action="/questions/<%= @question.id %>/edit" method="get" class="question_delete" </form>

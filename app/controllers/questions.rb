@@ -9,7 +9,6 @@ get '/questions/new' do
 end
 
 post '/questions' do
-  redirect '/login' if !user_authenticated?
   question = Question.new(params[:new_question])
   if question.save
     redirect "/questions/#{question.id}"
