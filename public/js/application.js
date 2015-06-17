@@ -4,4 +4,24 @@ $(document).ready(function() {
   // when we try to bind to them
 
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  $('.comment-form').on('submit', function(event){
+    event.preventDefault();
+
+    var url = $(this).attr('action');
+    var data = $(this).serialize();
+
+    var request = $.ajax({
+              url: url,
+              method: 'POST',
+              data: data
+    });
+
+    request.done(function(response){
+      console.log(response);
+      $('.comments ul').append(
+        $('<li>' + response.content + '</li>')
+      )
+    });
+  });
+
 });
