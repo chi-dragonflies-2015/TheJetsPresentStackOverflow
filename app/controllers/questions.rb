@@ -46,3 +46,27 @@ delete '/questions/:id' do
   @question.destroy
   redirect '/'
 end
+
+#add user auth
+get '/questions/:id/:vote_type' do
+  @question = Question.find(params[:id])
+  if params[:vote_type] == 'upvote'
+    @question.votes.create(value: 1)
+  else
+    @question.votes.create(value: -1)
+  end
+
+  if request.xhr?
+    id = question.id
+    count = question.votes.count.to_s
+    content_type :json
+    JSON.generate(count: count, id: id)
+  end
+end
+
+
+
+
+
+
+
