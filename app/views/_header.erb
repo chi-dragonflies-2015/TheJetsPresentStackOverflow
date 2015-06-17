@@ -1,0 +1,8 @@
+<header>
+  <% if session_status %>
+    <a href="/users/logout">Logout</a>
+  <% else %>
+    <a href="/users/login">Log In</a>
+    <a href="/users/new">Sign Up</a>
+  <% end %>
+</header>
