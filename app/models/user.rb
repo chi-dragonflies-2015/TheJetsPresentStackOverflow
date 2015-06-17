@@ -1,7 +1,10 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-  # Remember to create a migration!
+
+  has_many :questions, foreign_key: "asker_id"
+  has_many :answers, foreign_key: "answerer_id"
+  has_many :votes, foreign_key: "voter_id"
 
   validates :first_name, presence: true
   validates :email, presence: true, uniqueness: true
