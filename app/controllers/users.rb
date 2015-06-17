@@ -1,5 +1,6 @@
 get '/users/login' do
 
+  erb :'/users/login'
 end
 
 post '/users/sessions' do
@@ -12,5 +13,9 @@ get '/users/new' do
 end
 
 post '/users' do
-
+  if User.create(params[:user])
+    redirect '/'
+  else
+    erb :'/users/new'
+  end
 end

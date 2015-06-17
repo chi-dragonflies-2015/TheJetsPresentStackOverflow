@@ -1,3 +1,3 @@
 get '/' do
-
+"INDEX"
 end
