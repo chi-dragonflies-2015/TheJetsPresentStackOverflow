@@ -18,3 +18,11 @@
     </div>
   </div>
 </div>
+
+
+<div class="delete">
+  <form action="/questions/<%= @question.id %>" method="post" class="question_delete" </form>
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Question!">
+</div>
+

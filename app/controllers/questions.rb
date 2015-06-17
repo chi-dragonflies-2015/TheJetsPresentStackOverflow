@@ -12,7 +12,7 @@ end
 post '/questions' do
   question = Question.new(params[:new_question])
   if question.save
-    redirect '/questions/#{question.id}'
+    redirect "/questions/#{question.id}"
   else
     erb :'/questions/new'
   end
@@ -32,9 +32,9 @@ end
 
 #add user auth
 put '/questions/:id' do
-  @question = Question.update(params[:question])
-  if question.save
-    redirect '/questions/#{question.id}'
+  @question = Question.find(params[:id])
+  if @question.update(params[:question])
+    redirect "/questions/#{@question.id}"
   else
     erb :'/questions/edit'
   end
