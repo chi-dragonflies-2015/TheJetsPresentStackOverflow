@@ -25,7 +25,8 @@ get '/users/new' do
 end
 
 post '/users' do
-  if User.create(params[:user])
+  user = User.new(params[:user])
+  if user.save
     session[:id] = user.id
     redirect '/'
   else

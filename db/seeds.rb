@@ -1,7 +1,7 @@
 require 'faker'
 
 
-jack = User.new(first_name:"Jack", last_name: "McCallum",email: "mcca@aol.com")
+jack = User.create!(first_name:"Jack", last_name: "McCallum",email: "mcca@aol.com", password: "abc")
 
 
 20.times do
