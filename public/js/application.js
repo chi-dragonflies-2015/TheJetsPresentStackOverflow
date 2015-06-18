@@ -212,6 +212,23 @@ $(document).ready(function() {
       });
 
   });
+// Pick Best Answer
+  $('.answers').on("click",'.best-answer-picker a',function(event){
+    event.preventDefault();
+    var answer_id = $(this).parents('.answer').attr('id')
+    var path = $(this).attr('href')
+
+    var request = $.ajax({
+                          url: path,
+                          method: 'POST',
+                          data: {answer_id: answer_id}
+    });
+
+    var response = request.done(function(){
+      $('.best-answer-picker').hide()
+      $('#' + answer_id + ' .answer-header h1').css("color","green")
+    });
+   });
 
 
 });

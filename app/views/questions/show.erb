@@ -24,7 +24,6 @@
   <%= erb :_comments, locals: {commentable: @question, commentable_route: "questions"}%>
 </div>
 
-<!-- Add Edit Link -->
 <% if user_authenticated? && user_authorized?(@question.asker.id) %>
 
 <div class="edit-question">

@@ -4,3 +4,7 @@
 .edit-answer {
   display: none;
 }
+
+.best-answer h1{
+  color: green;
+}

@@ -1,9 +1,3 @@
-get '/answers/all' do
-  @answers = Answer.all
-  # this should go to
-  erb :index
-end
-
 post '/answers' do
   if request.xhr?
     @question = Question.find(params[:question_id])

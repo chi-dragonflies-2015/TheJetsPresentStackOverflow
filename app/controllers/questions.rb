@@ -1,6 +1,6 @@
 
 get '/questions' do
-  erb :index
+  redirect '/'
 end
 
 get '/questions/new' do
@@ -50,6 +50,15 @@ delete '/questions/:id' do
   redirect '/'
 end
 
+post '/questions/best/:id' do
+  check_auth
+  @question = Question.find(params[:id])
+  @answer = Answer.find(params[:answer_id])
+  @question.best_answer = @answer
+  @question.save
+end
+
+
 get '/questions/:id/upvote' do
   check_auth
   @question = Question.find(params[:id])
@@ -77,10 +86,5 @@ get '/questions/:id/downvote' do
     redirect '/questions/#{@question.id}'
   end
 end
-
-
-
-
-
 
 

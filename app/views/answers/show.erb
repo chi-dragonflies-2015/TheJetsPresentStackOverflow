@@ -1,4 +1,4 @@
-  <div id= '<%= answer.id  %>' class="answer">
+  <div id= '<%= answer.id  %>' class="answer <% if answer.question_answered_best %> best-answer <% end %>">
     <div class="answer-header debugger">
       <h1> <%= answer.title %></h1>
     </div>
@@ -25,6 +25,9 @@
       <%= erb :_comments, locals: {commentable: answer, commentable_route: "answers"}%>
 
     </div>
+
+  <% if user_authenticated? && user_authorized?(answer.answerer_id) %>
+
    <button class="edit-button"><a href="/answers/<%= answer.id %>/edit">Edit</a></button>
 
   <div class="edit-answer">
@@ -41,4 +44,11 @@
      <input type="submit" value="Delete Answer!">
      </form>
     </div>
+  <% end %>
+
+    <% if !answer.question.best_answer_id && user_authenticated? && user_authorized?(answer.question.asker_id) %>
+      <div class="btn best-answer-picker">
+        <button><a href="/questions/best/<%= answer.question.id %>">Choose as Best Answer</a></button>
+      </div>
+    <% end %>
 </div>
