@@ -27,3 +27,31 @@ delete '/answers/:id' do
   @answer = Answer.find(params[:id])
   @answer.destroy
 end
+
+get '/answers/:id/upvote' do
+  check_auth
+  @answer = Answer.find(params[:id])
+  @answer.votes.create(value: 1)
+  if request.xhr?
+    id = @answer.id
+    tally = @answer.vote_tally
+    content_type :json
+    JSON.generate(id: id, tally: tally)
+  # else
+  #   redirect '/questions/#{@answer.id}'
+  end
+end
+
+get '/answers/:id/downvote' do
+  check_auth
+  @answer = Answer.find(params[:id])
+  @answer.votes.create(value: -1)
+  if request.xhr?
+    id = @answer.id
+    tally = @answer.vote_tally
+    content_type :json
+    JSON.generate(id: id, tally: tally)
+  # else
+  #   redirect '/questions/#{@answer.id}'
+  end
+end

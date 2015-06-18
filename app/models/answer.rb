@@ -6,4 +6,12 @@ class Answer < ActiveRecord::Base
 
   validates :content, presence: true
 
+  def vote_tally
+    votes = self.votes.map do |vote|
+        vote.value
+    end
+    votes.reduce(:+)
+  end
+
+
 end

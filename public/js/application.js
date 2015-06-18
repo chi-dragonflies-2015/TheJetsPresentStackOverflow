@@ -44,7 +44,7 @@ $('.answers').on("submit","#edit-answer", function(event){
 
   var data =$(this).serialize();
   var url = $(this).attr('action');
-  var answer_id = $(this).parents('.answer').attr('id')
+  var answer_id = $(this).parents('.answer').attr('id');
   var request = $.ajax ({
                         url: url,
                         data: data,
@@ -60,13 +60,13 @@ $('#' + answer_id + ' .answer-content p').text(response.content);
     // $('answer-content').text(response.content);
 
     // $('.edit-answer').hide();
-  })
+  });
 });
 $('.answers').on('submit', '#delete-answer', function(event){
   event.preventDefault();
   var delete_link = this;
   var url = $(this).attr('action');
-  var answer_id = $(this).parents('.answer').attr('id')
+  var answer_id = $(this).parents('.answer').attr('id');
   var request = $.ajax({
                   url: url,
                   method: 'delete'
@@ -74,11 +74,11 @@ $('.answers').on('submit', '#delete-answer', function(event){
 
   var response = request.done(function(data){
     $('#' + answer_id ).remove();
-  });;
+  });
 });
 
 //Function to upvote a question
-    $('html').on('click','.upvote',function(event){
+    $('.question-sidebar').on('click','.upvote',function(event){
       event.preventDefault();
       var url = $(this).attr('href');
       var request = $.ajax({
@@ -86,12 +86,12 @@ $('.answers').on('submit', '#delete-answer', function(event){
                 method: 'get'
         });
       request.done(function(response){
-              $('#' + response.id + ' .vote_tally').text(response.tally);
+              $('.question-sidebar #' + response.id + ' .vote_tally').text(response.tally);
       });
     });
 
 //Function to downvote a question
-    $('html').on('click','.downvote',function(event){
+    $('.question-sidebar').on('click','.downvote',function(event){
       event.preventDefault();
       var url = $(this).attr('href');
       var request = $.ajax({
@@ -99,7 +99,33 @@ $('.answers').on('submit', '#delete-answer', function(event){
                 method: 'get'
         });
       request.done(function(response){
-              $('#' + response.id + ' .vote_tally').text(response.tally);
+              $('.question-sidebar #' + response.id + ' .vote_tally').text(response.tally);
+      });
+  });
+
+  //Function to upvote an answer
+    $('.answer-sidebar').on('click','.upvote',function(event){
+      event.preventDefault();
+      var url = $(this).attr('href');
+      var request = $.ajax({
+                url: url,
+                method: 'get'
+        });
+      request.done(function(response){
+              $('.answer-sidebar #' + response.id + ' .vote_tally').text(response.tally);
+      });
+    });
+
+//Function to downvote an answer
+    $('.answer-sidebar').on('click','.downvote',function(event){
+      event.preventDefault();
+      var url = $(this).attr('href');
+      var request = $.ajax({
+                url: url,
+                method: 'get'
+        });
+      request.done(function(response){
+              $('.answer-sidebar #' + response.id + ' .vote_tally').text(response.tally);
       });
   });
 });
