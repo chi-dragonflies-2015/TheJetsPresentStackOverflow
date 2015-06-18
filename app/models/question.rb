@@ -8,6 +8,13 @@ class Question < ActiveRecord::Base
   validates :title, presence: true, uniqueness: true
   validates :content, presence: true
 
+  def vote_tally
+    votes = self.votes.map do |vote|
+        vote.value
+    end
+    votes.reduce(:+)
+  end
+
   def days_ago
     t = Time.now - created_at
     mm, ss = t.divmod(60)

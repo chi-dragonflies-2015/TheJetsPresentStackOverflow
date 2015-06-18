@@ -4,7 +4,13 @@
     </div>
     <div class="debugger answer-body">
       <div class= "answer-sidebar">
-        vote-count and up/down votes and best check mark
+        <!-- vote-count and up/down votes and best check mark -->
+          <section id="<%= answer.id %>">
+            <a class="upvote" href="/answers/<%= answer.id %>/upvote"> Upvote</a>
+              <span class='vote_tally'><%= answer.vote_tally %></span>
+            <a class="downvote" href="/answers/<%= answer.id %>/downvote"> Downvote</a>
+          </section>
+
       </div>
       <div class="answer-content">
         <p> <%= answer.content %></p>

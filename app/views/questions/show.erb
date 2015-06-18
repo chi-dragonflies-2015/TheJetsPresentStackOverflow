@@ -5,6 +5,12 @@
   <div class="debugger question-body">
     <div class="question-sidebar">
       <!-- put in votes, upvote buttons, and best answer check mark -->
+      <section id="<%= @question.id %>">
+        <a class="upvote" href="/questions/<%= @question.id %>/upvote"> Upvote</a>
+          <span class='vote_tally'><%= @question.vote_tally %></span>
+        <a class="downvote" href="/questions/<%= @question.id %>/downvote"> Downvote</a>
+      </section>
+
     </div>
     <div class="question-content">
       <p><%= @question.content %></p>
