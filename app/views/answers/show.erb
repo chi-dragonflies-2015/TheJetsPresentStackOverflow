@@ -1,4 +1,4 @@
-  <div id= '<%= answer.id  %>' class="answer">
+  <div id= '<%= answer.id  %>' class="answer <% if answer.question_answered_best %> best-answer <% end %>">
     <div class="answer-header debugger">
       <h1> <%= answer.title %></h1>
     </div>
