@@ -21,6 +21,9 @@
           answerer_id.name
         </div>
       </div>
+
+      <%= erb :_comments, locals: {commentable: answer, commentable_route: "answers"}%>
+
     </div>
    <button class="edit-button"><a href="/answers/<%= answer.id %>/edit">Edit</a></button>
 
