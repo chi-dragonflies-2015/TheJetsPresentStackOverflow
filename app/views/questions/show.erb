@@ -1,4 +1,4 @@
-<div class="container">
+<div class="question-container">
   <div class="question-title debugger">
     <h1><%= @question.title %></h1>
   </div>
@@ -21,6 +21,30 @@
     asked on <%= pretty_date(@question.created_at) %> and last updated on <%= pretty_date(@question.updated_at) %> by <%= @question.asker.name %>
     </div>
   </div>
+    <div class="comments">
+    <h3>Comments</h3>
+    <ul>
+      <% @question.comments.each do |comment| %>
+        <li id=<%= comment.id %>>
+          <%= comment.content %>
+          <% if user_authorized?(comment.commenter_id) %>
+            <a class='comment-edit' href='#'>Edit</a>
+            <form class='comment-delete' action='/comments/<%= comment.id %>/delete' method='post'>
+              <input type='hidden' name='_method' value='delete'>
+              <input type='submit' value='Delete'>
+            </form>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <% if current_user %>
+    <h4>Create a New Comment</h4>
+    <form class='comment-form' action='/questions/<%= @question.id %>/comments/new' method='post'>
+      <textarea name='content' placeholder='Sample Comment'></textarea>
+      <input type='submit'></input>
+    </form>
+  <% end %>
 </div>
 
 <!-- Add Edit Link -->
@@ -42,6 +66,30 @@
 <div class = "answers">
 <% @question.answers.each  do |answer|%>
   <%= erb :'/answers/show', locals: {answer: answer}, layout: false %>
+  <div class="comments">
+  <h3>Comments</h3>
+  <ul>
+    <% answer.comments.each do |comment| %>
+      <li id=<%= comment.id %>>
+        <%= comment.content %>
+        <% if user_authorized?(comment.commenter_id) %>
+          <a class='comment-edit' href='#'>Edit</a>
+          <form class='comment-delete' action='/comments/<%= comment.id %>/delete' method='post'>
+            <input type='hidden' name='_method' value='delete'>
+            <input type='submit' value='Delete'>
+          </form>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<% if current_user %>
+  <h4>Create a New Comment</h4>
+  <form class='comment-form' action='/answers/<%= answer.id %>/comments/new' method='post'>
+    <textarea name='content' placeholder='Sample Comment'></textarea>
+    <input type='submit'></input>
+  </form>
+<% end %>
 <% end %>
 </div>
 
