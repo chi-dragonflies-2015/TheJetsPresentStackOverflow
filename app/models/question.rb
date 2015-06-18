@@ -24,4 +24,6 @@ class Question < ActiveRecord::Base
     "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
   end
 
+
+
 end
