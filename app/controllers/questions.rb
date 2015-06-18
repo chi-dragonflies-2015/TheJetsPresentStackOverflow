@@ -1,6 +1,6 @@
 
 get '/questions' do
-  erb :index
+  redirect '/'
 end
 
 get '/questions/new' do
@@ -49,3 +49,42 @@ delete '/questions/:id' do
   @question.destroy
   redirect '/'
 end
+
+post '/questions/best/:id' do
+  check_auth
+  @question = Question.find(params[:id])
+  @answer = Answer.find(params[:answer_id])
+  @question.best_answer = @answer
+  @question.save
+end
+
+
+get '/questions/:id/upvote' do
+  check_auth
+  @question = Question.find(params[:id])
+  @question.votes.create(value: 1)
+  if request.xhr?
+    id = @question.id
+    tally = @question.vote_tally
+    content_type :json
+    JSON.generate(id: id, tally: tally)
+  else
+    redirect '/questions/#{@question.id}'
+  end
+end
+
+get '/questions/:id/downvote' do
+  check_auth
+  @question = Question.find(params[:id])
+  @question.votes.create(value: -1)
+  if request.xhr?
+    id = @question.id
+    tally = @question.vote_tally
+    content_type :json
+    JSON.generate(id: id, tally: tally)
+  else
+    redirect '/questions/#{@question.id}'
+  end
+end
+
+

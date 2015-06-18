@@ -4,6 +4,8 @@
 .edit-answer {
   display: none;
 }
-.wrapper {
-  margin: auto;
+
+.best-answer h1{
+  color: green;
 }
+
