@@ -19,7 +19,7 @@ $(document).ready(function() {
 
     request.done(function(response){
       $('.'+response.type+' .comments ul').append(
-        $('<li id='+response.id+'>' + response.content + commentButtons(response.id))
+        $('<li id="comment-'+response.id+'">' + response.content + commentButtons(response.id))
       );
       $('.comment-form textarea').val('');
     });
@@ -68,7 +68,7 @@ $(document).ready(function() {
     });
   });
 
-  $('.comments').on('click', '.comment-delete', function(event){
+  $('html').on('submit', '.comment-delete',function(event){
     event.preventDefault();
 
     url = $(this).attr('action')
@@ -79,7 +79,7 @@ $(document).ready(function() {
     });
 
     request.done(function(id){
-      $('.comments #'+id).remove();
+      $('#comment-'+id).remove();
     });
   });
 
@@ -93,7 +93,7 @@ $(document).ready(function() {
 
 
   // Function to send Ajax on New Answer form submission
-  $('#create-answer').on("submit", function(event) {
+  $('html').on("submit",'#create-answer', function(event) {
     event.preventDefault();
      var data = $(this).serialize();
      var url = $(this).attr('action');

@@ -42,7 +42,9 @@ end
 
 delete '/comments/:id/delete' do
   comment = Comment.find(params[:id])
-  question_id = comment.commentable_id
+  unless question_id = comment.commentable.question_id
+    question_id = comment.commentable_id
+  end
   comment.destroy
 
   if request.xhr?

@@ -2,7 +2,7 @@
   <h3>Comments</h3>
   <ul>
     <% commentable.comments.each do |comment| %>
-      <li id=<%= comment.id %>>
+      <li id='comment-<%= comment.id %>'>
         <%= comment.content %>
         <% if user_authorized?(comment.commenter_id) %>
           <a class='comment-edit' href='#'>Edit</a>
