@@ -2,7 +2,7 @@ require 'json'
 
 post '/questions/:id/comments/new' do
   if question = Question.find(params[:id])
-    comment = Comment.new(content: params[:content])
+    comment = Comment.new(content: params[:content], commenter_id: session[:id].to_i)
     question.comments << comment
   end
   if request.xhr?
@@ -18,5 +18,6 @@ end
 put '/comments/:id/edit' do
   Comment.find(params[:id]).update_attributes(
   content: params[:content])
+
   params[:content]
 end

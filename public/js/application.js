@@ -18,7 +18,7 @@ $(document).ready(function() {
 
     request.done(function(response){
       $('.comments ul').append(
-        $('<li>' + response.content + '</li>')
+        $('<li id='+response.id+'>' + response.content + " <a class='comment-edit' href='#edit'>Edit</a> <a class='comment-delete' href='#delete'>Delete</a>" + '</li>')
       )
     });
   });
