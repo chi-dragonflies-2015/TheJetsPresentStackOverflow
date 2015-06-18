@@ -1,0 +1,35 @@
+  <div id= '<%= answer.id  %>' class="answer">
+    <div class="answer-header debugger">
+      <h1> <%= answer.title %></h1>
+    </div>
+    <div class="debugger answer-body">
+      <div class= "answer-sidebar">
+        vote-count and up/down votes and best check mark
+      </div>
+      <div class="answer-content">
+        <p> <%= answer.content %></p>
+      </div>
+      <div class="answer-footer">
+        <div class="answer-creater">
+          answered on answer.created_at
+          answerer_id.name
+        </div>
+      </div>
+    </div>
+   <button class="edit-button"><a href="/answers/<%= answer.id %>/edit">Edit</a></button>
+
+  <div class="edit-answer">
+    <form id="edit-answer" action="/answers/<%= answer.id %>/edit" method="post">
+      <input type="text" name="answer[title]" value="<%= answer.title %>"><br>
+      <input type="text" name="answer[content]" value="<%= answer.content %>"><br>
+      <input type="submit" clas="btn" value="Edit your answer">
+    </form>
+  </div>
+
+   <div class="delete">
+     <form id="delete-answer" action="/answers/<%= answer.id %>" method="post" class="answer_delete">
+     <input type="hidden" name="_method" value="delete">
+     <input type="submit" value="Delete Answer!">
+     </form>
+    </div>
+</div>

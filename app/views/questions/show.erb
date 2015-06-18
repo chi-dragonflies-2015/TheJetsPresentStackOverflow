@@ -12,28 +12,37 @@
   </div>
   <div class="question-footer">
     <div class="question-creator">
-    asked on @question.created_at
-    last updated on @question.updated_at
-    @question.user.first_name + " " + @question.user.last_name
+    asked on <%= pretty_date(@question.created_at) %> and last updated on <%= pretty_date(@question.updated_at) %> by <%= @question.asker.name %>
     </div>
   </div>
 </div>
 
+<!-- Add Edit Link -->
+<% if user_authenticated? && user_authorized?(@question.asker.id) %>
 
-<% if user_authorized?(@question.asker.id) %>
-
-<div class="delete">
-  <form action="/questions/<%= @question.id %>/edit" method="get" class="question_delete" </form>
-  <input type="submit" value="Edit">
-  <form>
+<div class="edit-question">
+  <button><a href="/questions/<%= @question.id %>/edit">Edit Question</a></button>
 </div>
 
-
 <div class="delete">
-  <form action="/questions/<%= @question.id %>" method="post" class="question_delete" </form>
+  <form action="/questions/<%= @question.id %>" method="post" class="question_delete">
   <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete">
+  <input type="submit" value="Delete Question!">
   </form>
 </div>
-
 <% end %>
+
+
+<div class = "answers">
+<% @question.answers.each  do |answer|%>
+  <%= erb :'/answers/show', locals: {answer: answer}, layout: false %>
+<% end %>
+</div>
+
+<button class="new-answer">New Answer</button>
+  <form id="create-answer" action="/answers" method="post">
+    <input type="text" name="answer[title]" placeholder="optional title"><br>
+    <input type="text" name="answer[content]" placeholder="Put your answer here.."><br>
+    <input type="hidden" name="question_id" value="<%= @question.id %>">
+    <input type="submit" clas="btn" value="Submit Answer">
+  </form>

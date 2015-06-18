@@ -1,0 +1,16 @@
+<% if session[:id] %>
+<div class="edit-answer">
+  <form action="/answers/<%= @answer.id %>" method="post">
+    <input type="text" name="_method" value="put">
+    <input type="text" name="anwser[title]" value="<%= answer.title %>Title"><br>
+    <input type="text" name="answer[content]" value="<%= answer.content %>Content"><br>
+    <input type="submit" clas="btn" value="Edit your answer">
+  </form>
+</div>
+<div class="delete">
+  <form action="/answers/<%= answers.id %>" method="post" class="answer_delete">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Answer!">
+  </form>
+</div>
+<% end %>
