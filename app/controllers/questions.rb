@@ -51,21 +51,30 @@ delete '/questions/:id' do
 end
 
 #add user auth
-get '/questions/:id/:vote_type' do
+get '/questions/:id/upvote' do
   @question = Question.find(params[:id])
-  if params[:vote_type] == 'upvote'
-    @question.votes.create(value: 1)
-    redirect "/questions/#{@question.id}"
-  else
-    @question.votes.create(value: -1)
-    redirect "/questions/#{@question.id}"
-  end
-
+  @question.votes.create(value: 1)
   if request.xhr?
-    id = question.id
-    count = question.votes.count.to_s
+    id = @question.id
+    tally = @question.vote_tally
     content_type :json
-    JSON.generate(count: count, id: id)
+    JSON.generate(id: id, tally: tally)
+  else
+    redirect '/questions/#{@question.id}'
+  end
+end
+
+#add user auth
+get '/questions/:id/downvote' do
+  @question = Question.find(params[:id])
+  @question.votes.create(value: -1)
+  if request.xhr?
+    id = @question.id
+    tally = @question.vote_tally
+    content_type :json
+    JSON.generate(id: id, tally: tally)
+  else
+    redirect '/questions/#{@question.id}'
   end
 end
 
