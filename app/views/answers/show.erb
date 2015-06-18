@@ -32,4 +32,10 @@
      <input type="submit" value="Delete Answer!">
      </form>
     </div>
+
+    <% if !answer.question.best_answer_id %>
+      <div class="btn best-answer-picker">
+        <button><a href="/questions/best/<%= answer.question.id %>">Choose as Best Answer</a></button>
+      </div>
+    <% end %>
 </div>

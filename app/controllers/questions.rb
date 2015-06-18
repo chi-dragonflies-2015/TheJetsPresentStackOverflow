@@ -1,6 +1,6 @@
 
 get '/questions' do
-  erb :index
+  redirect '/'
 end
 
 get '/questions/new' do
@@ -48,4 +48,12 @@ delete '/questions/:id' do
   halt 401, "forbidden" if !user_authorized?(@question.asker.id)
   @question.destroy
   redirect '/'
+end
+
+post '/questions/best/:id' do
+  check_auth
+  @question = Question.find(params[:id])
+  @answer = Answer.find(params[:answer_id])
+  @question.best_answer = @answer
+  @question.save
 end
