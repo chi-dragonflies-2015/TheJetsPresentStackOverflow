@@ -1,7 +1,10 @@
 require 'bcrypt'
 
 class User < ActiveRecord::Base
-  # Remember to create a migration!
+
+  has_many :questions, foreign_key: "asker_id"
+  has_many :answers, foreign_key: "answerer_id"
+  has_many :votes, foreign_key: "voter_id"
 
   validates :first_name, presence: true
   validates :email, presence: true, uniqueness: true
@@ -20,7 +23,7 @@ class User < ActiveRecord::Base
 
   def self.authenticate(email, password_attempt)
     user = User.find_by(email: email)
-    return user if user && user.password = password_attempt
+    return user if user && user.password == password_attempt
   end
 
   def name
