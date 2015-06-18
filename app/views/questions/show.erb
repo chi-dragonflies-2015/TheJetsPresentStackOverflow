@@ -76,14 +76,14 @@
       </li>
     <% end %>
   </ul>
-</div>
-<% if current_user %>
-  <h4>Create a New Comment</h4>
-  <form class='comment-form' action='/answers/<%= answer.id %>/comments/new' method='post'>
-    <textarea name='content' placeholder='Sample Comment'></textarea>
-    <input type='submit'></input>
-  </form>
-<% end %>
+  </div>
+  <% if current_user %>
+    <h4>Create a New Comment</h4>
+    <form class='comment-form' action='/answers/<%= answer.id %>/comments/new' method='post'>
+      <textarea name='content' placeholder='Sample Comment'></textarea>
+      <input type='submit'></input>
+    </form>
+  <% end %>
 <% end %>
 </div>
 

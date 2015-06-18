@@ -1,8 +1,17 @@
-<header>
-  <% if user_authenticated? %>
-    <a href="/users/logout">Logout</a>
-  <% else %>
-    <a href="/users/login">Log In</a>
-    <a href="/users/new">Sign Up</a>
-  <% end %>
-</header>
+
+
+  <nav class="light-blue lighten-1" role="navigation">
+  <div class="container">
+    <% if user_authenticated? %>
+      <a href="/users/logout">Logout</a>
+    <% else %>
+      <a href="/users/login">Log In</a>
+      <a href="/users/new">Sign Up</a>
+    <% end %>
+  </div>
+  </nav>
+  <div class="nav-wrapper light-blue lighten-3 brand-logo" style="height: 3em;">
+    <div class="container">
+      <a href="#" class="brand-logo left">Jet OverFlow</a>
+    </div>
+  </div>
