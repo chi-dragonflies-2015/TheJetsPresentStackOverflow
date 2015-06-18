@@ -5,7 +5,7 @@
   <% @questions.each do |question| %>
     <div class="question" id="<%= question.id %>">
       <ul class="inline">
-        <li>25 <br> votes</li>
+        <li><%= question.vote_tally %> <br> votes</li>
         <li>53 <br> answers</li>
       </ul>
       <a href="/questions/<%= question.id %>"><%= question.title %></a>
