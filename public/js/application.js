@@ -104,7 +104,7 @@ $('.answers').on('submit', '#delete-answer', function(event){
   });
 
   //Function to upvote an answer
-    $('.answer-sidebar').on('click','.upvote',function(event){
+    $('.answers').on('click','.upvote',function(event){
       event.preventDefault();
       var url = $(this).attr('href');
       var request = $.ajax({
@@ -117,7 +117,7 @@ $('.answers').on('submit', '#delete-answer', function(event){
     });
 
 //Function to downvote an answer
-    $('.answer-sidebar').on('click','.downvote',function(event){
+    $('.answers').on('click','.downvote',function(event){
       event.preventDefault();
       var url = $(this).attr('href');
       var request = $.ajax({
