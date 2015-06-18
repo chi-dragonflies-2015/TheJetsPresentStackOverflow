@@ -6,7 +6,7 @@
     <div class="question" id="<%= question.id %>">
       <ul class="inline">
         <li><%= question.vote_tally ? question.vote_tally : 0 %> <br> votes</li>
-        <li>53 <br> answers</li>
+        <li><%= question.answers.count ? question.answers.count : 0 %> <br> answers</li>
       </ul>
       <a href="/questions/<%= question.id %>"><%= question.title %></a>
       <span class="asked-ago">asked <%= question.days_ago %> by <%= question.asker.name %></span>
