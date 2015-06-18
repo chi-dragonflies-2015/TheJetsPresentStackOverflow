@@ -26,6 +26,11 @@ $(document).ready(function() {
   $('.comments').on('click', '.comment-edit', function(event){
     event.preventDefault();
 
+    if ($('.comments').find('#dynaform').attr('action')){
+      formText = $('#dynaform input[type=text]').val();
+      $('#dynaform').replaceWith(formText + " <a class='comment-edit' href='#edit'>Edit</a> <a class='comment-delete' href='#delete'>Delete</a>");
+    };
+
     $listItem = $(this).parent();
     commentId = $listItem.attr('id')
     commentText = $listItem
@@ -56,4 +61,5 @@ $(document).ready(function() {
       });
     });
   });
+
 });
