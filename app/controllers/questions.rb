@@ -50,8 +50,8 @@ delete '/questions/:id' do
   redirect '/'
 end
 
-#add user auth
 get '/questions/:id/upvote' do
+  check_auth
   @question = Question.find(params[:id])
   @question.votes.create(value: 1)
   if request.xhr?
@@ -64,8 +64,8 @@ get '/questions/:id/upvote' do
   end
 end
 
-#add user auth
 get '/questions/:id/downvote' do
+  check_auth
   @question = Question.find(params[:id])
   @question.votes.create(value: -1)
   if request.xhr?
