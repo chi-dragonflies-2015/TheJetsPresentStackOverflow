@@ -16,7 +16,7 @@
   </ul>
 </div>
 <% if current_user %>
-  <h4>Create a New Comment</h4>
+  <button class='new-comment-button'><a href="#">New Comment</a></button>
   <form class='comment-form' action='/<%= commentable_route %>/<%= commentable.id %>/comments/new' method='post'>
     <textarea name='content' placeholder='Sample Comment'></textarea>
     <input type='submit'></input>

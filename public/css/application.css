@@ -5,6 +5,10 @@
   display: none;
 }
 
+.comment-form{
+  display:none;
+}
+
 .best-answer h1{
   color: green;
 }
