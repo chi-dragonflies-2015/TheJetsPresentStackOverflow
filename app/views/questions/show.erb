@@ -1,10 +1,16 @@
-<div class="container">
+<div class="question">
   <div class="question-title debugger">
     <h1><%= @question.title %></h1>
   </div>
   <div class="debugger question-body">
     <div class="question-sidebar">
       <!-- put in votes, upvote buttons, and best answer check mark -->
+      <section id="<%= @question.id %>">
+        <a class="upvote" href="/questions/<%= @question.id %>/upvote"> Upvote</a>
+          <span class='vote_tally'><%= @question.vote_tally %></span>
+        <a class="downvote" href="/questions/<%= @question.id %>/downvote"> Downvote</a>
+      </section>
+
     </div>
     <div class="question-content">
       <p><%= @question.content %></p>
@@ -15,6 +21,7 @@
     asked on <%= pretty_date(@question.created_at) %> and last updated on <%= pretty_date(@question.updated_at) %> by <%= @question.asker.name %>
     </div>
   </div>
+  <%= erb :_comments, locals: {commentable: @question, commentable_route: "questions"}%>
 </div>
 
 <% if user_authenticated? && user_authorized?(@question.asker.id) %>
