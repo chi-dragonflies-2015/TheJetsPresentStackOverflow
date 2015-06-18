@@ -8,8 +8,9 @@ post '/questions/:id/comments/new' do
   if request.xhr?
     id = comment.id
     content = comment.content
+    type = "question"
     content_type :json
-    JSON.generate(id: id, content: content)
+    JSON.generate(id: id, content: content, type: type)
   else
     redirect "/questions/#{question.id}"
   end
@@ -17,14 +18,16 @@ end
 
 post '/answers/:id/comments/new' do
   if answer = Answer.find(params[:id])
+    question = answer.question
     comment = Comment.new(content: params[:content], commenter_id: session[:id].to_i)
     answer.comments << comment
   end
   if request.xhr?
     id = comment.id
     content = comment.content
+    type = "answer"
     content_type :json
-    JSON.generate(id: id, content: content)
+    JSON.generate(id: id, content: content, type: type)
   else
     redirect "/questions/#{question.id}"
   end

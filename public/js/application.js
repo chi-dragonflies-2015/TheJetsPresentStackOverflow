@@ -5,7 +5,7 @@ $(document).ready(function() {
     return ' <a class="comment-edit" href="#edit">Edit</a><form class="comment-delete" action="/comments/'+commentId+'/delete" method="post"><input type="hidden" name="_method" value="delete"><input type="submit" value="Delete"></form>'
   };
 
-  $('.comment-form').on('submit', function(event){
+  $('html').on('submit', '.comment-form', function(event){
     event.preventDefault();
 
     var url = $(this).attr('action');
@@ -18,7 +18,7 @@ $(document).ready(function() {
     });
 
     request.done(function(response){
-      $('.comments ul').append(
+      $('.'+response.type+' .comments ul').append(
         $('<li id='+response.id+'>' + response.content + commentButtons(response.id))
       );
       $('.comment-form textarea').val('');
