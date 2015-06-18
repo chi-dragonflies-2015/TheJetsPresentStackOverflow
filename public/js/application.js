@@ -18,7 +18,7 @@ $(document).ready(function() {
 
     request.done(function(response){
       $('.comments ul').append(
-        $('<li id='+response.id+'>' + response.content + " <a class='comment-edit' href='#edit'>Edit</a> <a class='comment-delete' href='#delete'>Delete</a>" + '</li>')
+        $('<li id='+response.id+'>' + response.content + '<a class="comment-edit" href="#edit">Edit</a><form class="comment-delete" action="/comments/'+response.id+'/delete" method="post"><input type="hidden" name="_method" value="delete"><input type="submit" value="Delete"></form>')
       )
     });
   });
@@ -28,7 +28,9 @@ $(document).ready(function() {
 
     if ($('.comments').find('#dynaform').attr('action')){
       formText = $('#dynaform input[type=text]').val();
-      $('#dynaform').replaceWith(formText + " <a class='comment-edit' href='#edit'>Edit</a> <a class='comment-delete' href='#delete'>Delete</a>");
+      id = $('#dynaform').parent().attr('id')
+
+      $('#dynaform').replaceWith(formText + ' <a class="comment-edit" href="#edit">Edit</a><form class="comment-delete" action="/comments/'+id+'/delete" method="post"><input type="hidden" name="_method" value="delete"><input type="submit" value="Delete"></form>');
     };
 
     $listItem = $(this).parent();
@@ -46,6 +48,8 @@ $(document).ready(function() {
     $listItem.on('submit', '#dynaform', function(event){
       event.preventDefault();
 
+      id = $(this).parent().attr('id')
+
       url = $(this).attr('action');
       data = $(this).serialize();
 
@@ -57,7 +61,7 @@ $(document).ready(function() {
 
       request.done(function(text){
         console.log(text);
-        $listItem.html(text + " <a class='comment-edit' href='#edit'>Edit</a> <a class='comment-delete' href='#delete'>Delete</a>");
+        $listItem.html(text + ' <a class="comment-edit" href="#edit">Edit</a><form class="comment-delete" action="/comments/'+id+'/delete" method="post"><input type="hidden" name="_method" value="delete"><input type="submit" value="Delete"></form>');
       });
     });
   });
