@@ -10,6 +10,7 @@ $(document).ready(function() {
 
     var url = $(this).attr('action');
     var data = $(this).serialize();
+    var that = this
 
     var request = $.ajax({
               url: url,
@@ -23,6 +24,8 @@ $(document).ready(function() {
         $('<li id="comment-'+response.id+'">' + response.content + commentButtons(response.id))
       );
       $('.comment-form textarea').val('');
+      $(that).siblings('button').show();
+      $(that).hide();
     });
   });
 
@@ -225,6 +228,13 @@ $(document).ready(function() {
       $('#' + answer_id + ' .answer-header h1').css("color","green");
     });
    });
+
+//Function to show Comment Form
+  $('html').on("click",".new-comment-button",function(event){
+    event.preventDefault();
+    $(this).siblings('form').show();
+    $(this).hide();
+  });
 
 
 });
