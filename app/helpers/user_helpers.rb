@@ -10,7 +10,7 @@ helpers do
   end
 
   def current_user
-    User.find_by(id: session[:id])
+    User.find_by(id: session[:id]) if session[:id]
   end
 
   def pretty_date(date)
