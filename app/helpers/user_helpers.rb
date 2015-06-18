@@ -13,4 +13,11 @@ helpers do
     User.find_by(id: session[:id])
   end
 
+  def pretty_date(date)
+    month = date.month.to_s
+    day = date.day.to_s
+    year = date.year.to_s
+    month + "/" + day + "/" + year
+  end
+
 end

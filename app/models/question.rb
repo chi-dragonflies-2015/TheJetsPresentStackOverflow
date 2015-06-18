@@ -16,4 +16,7 @@ class Question < ActiveRecord::Base
     dd, hh = hh.divmod(24)
     "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
   end
+
+
+
 end
