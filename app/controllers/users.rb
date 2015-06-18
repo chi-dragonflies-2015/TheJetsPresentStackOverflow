@@ -1,5 +1,5 @@
 get '/users/login' do
-  if session[:id]
+  if user_authenticated?
     redirect '/'
   else
     erb :'/users/login'
@@ -17,7 +17,7 @@ post '/users/sessions' do
 end
 
 get '/users/new' do
-  if session[:id]
+  if user_authenticated?
     redirect '/'
   else
     erb :'/users/new'
