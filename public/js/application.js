@@ -4,6 +4,10 @@ $(document).ready(function() {
   // when we try to bind to them
 
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  function commentButtons (commentId) {
+    return ' <a class="comment-edit" href="#edit">Edit</a><form class="comment-delete" action="/comments/'+commentId+'/delete" method="post"><input type="hidden" name="_method" value="delete"><input type="submit" value="Delete"></form>'
+  };
+
   $('.comment-form').on('submit', function(event){
     event.preventDefault();
 
@@ -18,7 +22,7 @@ $(document).ready(function() {
 
     request.done(function(response){
       $('.comments ul').append(
-        $('<li id='+response.id+'>' + response.content + ' <a class="comment-edit" href="#edit">Edit</a><form class="comment-delete" action="/comments/'+response.id+'/delete" method="post"><input type="hidden" name="_method" value="delete"><input type="submit" value="Delete"></form>')
+        $('<li id='+response.id+'>' + response.content + commentButtons(response.id))
       );
       $('.comment-form textarea').val('');
     });
@@ -31,7 +35,7 @@ $(document).ready(function() {
       formText = $('#dynaform input[type=text]').val();
       id = $('#dynaform').parent().attr('id')
 
-      $('#dynaform').replaceWith(formText + ' <a class="comment-edit" href="#edit">Edit</a><form class="comment-delete" action="/comments/'+id+'/delete" method="post"><input type="hidden" name="_method" value="delete"><input type="submit" value="Delete"></form>');
+      $('#dynaform').replaceWith(formText + commentButtons(id));
     };
 
     $listItem = $(this).parent();
@@ -62,7 +66,7 @@ $(document).ready(function() {
 
       request.done(function(text){
         console.log(text);
-        $listItem.html(text + ' <a class="comment-edit" href="#edit">Edit</a><form class="comment-delete" action="/comments/'+id+'/delete" method="post"><input type="hidden" name="_method" value="delete"><input type="submit" value="Delete"></form>');
+        $listItem.html(text + commentButtons(id));
       });
     });
   });
