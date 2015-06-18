@@ -9,3 +9,14 @@
   color: green;
 }
 
+#logout,#login, #signup {
+  float: right;
+}
+
+.question-link {
+  font-size: 2em;
+}
+
+.asked-ago {
+  border-bottom: 1px solid lightgray;
+}
