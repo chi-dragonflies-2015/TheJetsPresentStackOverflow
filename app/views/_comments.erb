@@ -1,0 +1,24 @@
+<div class="comments">
+  <h3>Comments</h3>
+  <ul>
+    <% commentable.comments.each do |comment| %>
+      <li id='comment-<%= comment.id %>'>
+        <%= comment.content %>
+        <% if user_authorized?(comment.commenter_id) %>
+          <a class='comment-edit' href='#'>Edit</a>
+          <form class='comment-delete' action='/comments/<%= comment.id %>/delete' method='post'>
+            <input type='hidden' name='_method' value='delete'>
+            <input type='submit' value='Delete'>
+          </form>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<% if current_user %>
+  <h4>Create a New Comment</h4>
+  <form class='comment-form' action='/<%= commentable_route %>/<%= commentable.id %>/comments/new' method='post'>
+    <textarea name='content' placeholder='Sample Comment'></textarea>
+    <input type='submit'></input>
+  </form>
+<% end %>
