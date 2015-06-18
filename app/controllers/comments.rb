@@ -14,3 +14,9 @@ post '/questions/:id/comments/new' do
     redirect "/questions/#{question.id}"
   end
 end
+
+put '/comments/:id/edit' do
+  Comment.find(params[:id]).update_attributes(
+  content: params[:content])
+  params[:content]
+end

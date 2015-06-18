@@ -1,4 +1,4 @@
-<div class="container">
+<div class="question-container">
   <div class="question-title debugger">
     <h1><%= @question.title %></h1>
   </div>
@@ -21,7 +21,13 @@
     <h3>Comments</h3>
     <ul>
       <% @question.comments.each do |comment| %>
-        <li><%= comment.content %></li>
+        <li id=<%= comment.id %> >
+          <%= comment.content %>
+          <% if user_authorized?(comment.commenter_id) %>
+            <a class='comment-edit' href="#edit">Edit</a>
+            <a class='comment-delete' href="#delete">Delete</a>
+          <% end %>
+        </li>
       <% end %>
     </ul>
   </div>
