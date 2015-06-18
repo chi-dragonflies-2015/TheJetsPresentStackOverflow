@@ -37,8 +37,6 @@ get '/answers/:id/upvote' do
     tally = @answer.vote_tally
     content_type :json
     JSON.generate(id: id, tally: tally)
-  # else
-  #   redirect '/questions/#{@answer.id}'
   end
 end
 
@@ -51,7 +49,5 @@ get '/answers/:id/downvote' do
     tally = @answer.vote_tally
     content_type :json
     JSON.generate(id: id, tally: tally)
-  # else
-  #   redirect '/questions/#{@answer.id}'
   end
 end
