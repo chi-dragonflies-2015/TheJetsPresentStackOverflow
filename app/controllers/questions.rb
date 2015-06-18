@@ -55,8 +55,10 @@ get '/questions/:id/:vote_type' do
   @question = Question.find(params[:id])
   if params[:vote_type] == 'upvote'
     @question.votes.create(value: 1)
+    redirect "/questions/#{@question.id}"
   else
     @question.votes.create(value: -1)
+    redirect "/questions/#{@question.id}"
   end
 
   if request.xhr?
