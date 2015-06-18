@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="filter-bar">
+  </div>
+  <div class="question-container">
+  <% @questions.each do |question| %>
+    <div class="question" id="<%= question.id %>">
+      <ul class="inline">
+        <li>25 <br> votes</li>
+        <li>53 <br> answers</li>
+      </ul>
+      <a href="/questions/<%= question.id %>"><%= question.title %></a>
+      <span class="asked-ago">asked <%= question.days_ago %> by <%= question.asker.name %></span>
+    </div>
+  <% end %>
+  </div>
+</div>
