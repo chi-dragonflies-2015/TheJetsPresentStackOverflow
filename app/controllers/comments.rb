@@ -1,6 +1,7 @@
 require 'json'
 
 post '/questions/:id/comments/new' do
+  check_auth
   if question = Question.find(params[:id])
     comment = Comment.new(content: params[:content], commenter_id: session[:id].to_i)
     question.comments << comment
@@ -17,6 +18,7 @@ post '/questions/:id/comments/new' do
 end
 
 post '/answers/:id/comments/new' do
+  check_auth
   if answer = Answer.find(params[:id])
     question = answer.question
     comment = Comment.new(content: params[:content], commenter_id: session[:id].to_i)
@@ -34,15 +36,17 @@ post '/answers/:id/comments/new' do
 end
 
 put '/comments/:id/edit' do
-  Comment.find(params[:id]).update_attributes(
+  comment = Comment.find(params[:id])
+  halt 401 if !user_authorized?(comment.commenter_id)
+  comment.update_attributes(
   content: params[:content])
-
   params[:content]
 end
 
 delete '/comments/:id/delete' do
   comment = Comment.find(params[:id])
-  unless question_id = comment.commentable.question_id
+  halt 401 if !user_authorized?(comment.commenter_id)
+  unless question_id = comment.commentable_id
     question_id = comment.commentable_id
   end
   comment.destroy

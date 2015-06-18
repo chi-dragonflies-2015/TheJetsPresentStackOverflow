@@ -36,7 +36,7 @@ $(document).ready(function() {
     };
 
     $listItem = $(this).parent();
-    commentId = $listItem.attr('id')
+    commentId = $listItem.attr('id').match(/\d+/)[0]
     commentText = $listItem
                     .clone()
                     .children()
@@ -50,7 +50,7 @@ $(document).ready(function() {
     $listItem.on('submit', '#dynaform', function(event){
       event.preventDefault();
 
-      id = $(this).parent().attr('id')
+      id = $(this).parent().attr('id').match(/\d+/)[0]
 
       url = $(this).attr('action');
       data = $(this).serialize();
