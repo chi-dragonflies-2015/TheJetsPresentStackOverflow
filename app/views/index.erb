@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="filter-bar">
+  </div>
+  <div class="question-container">
+  <% @questions.all do |question| %>
+    <div class="question" id="<%= question.id %>">
+      <ul class="inline">
+        <li><%= question.votes.count %> <br> votes</li>
+        <li><%= question.answers.count %> <br> answers</li>
+        <li><%= question.views.count %> <br> views</li>
+      </ul>
+      <a href="/questions/<%= question.id %>"><%= question.title %></a>
+      <span class="asked-ago">asked <%= question.asked_ago %> by <%= question.user.name %></span>
+    </div>
+  <% end %>
+  </div>
+</div>
