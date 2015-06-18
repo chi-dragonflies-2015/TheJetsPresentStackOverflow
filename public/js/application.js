@@ -19,7 +19,8 @@ $(document).ready(function() {
     request.done(function(response){
       $('.comments ul').append(
         $('<li id='+response.id+'>' + response.content + '<a class="comment-edit" href="#edit">Edit</a><form class="comment-delete" action="/comments/'+response.id+'/delete" method="post"><input type="hidden" name="_method" value="delete"><input type="submit" value="Delete"></form>')
-      )
+      );
+      $('.comment-form textarea').val('');
     });
   });
 
