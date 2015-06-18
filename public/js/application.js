@@ -49,16 +49,31 @@ $(document).ready(function() {
       url = $(this).attr('action');
       data = $(this).serialize();
 
-      response = $.ajax({
+      request = $.ajax({
               url: url,
               method: 'put',
               data: data
       });
 
-      response.done(function(text){
+      request.done(function(text){
         console.log(text);
         $listItem.html(text + " <a class='comment-edit' href='#edit'>Edit</a> <a class='comment-delete' href='#delete'>Delete</a>");
       });
+    });
+  });
+
+  $('.comments').on('click', '.comment-delete', function(event){
+    event.preventDefault();
+
+    url = $(this).attr('action')
+
+    request = $.ajax({
+      url: url,
+      method: 'delete'
+    });
+
+    request.done(function(id){
+      $('.comments #'+id).remove();
     });
   });
 

@@ -24,8 +24,11 @@
         <li id=<%= comment.id %>>
           <%= comment.content %>
           <% if user_authorized?(comment.commenter_id) %>
-            <a class='comment-edit' href="#edit">Edit</a>
-            <a class='comment-delete' href="#delete">Delete</a>
+            <a class='comment-edit' href='#'>Edit</a>
+            <form class='comment-delete' action='/comments/<%= comment.id %>/delete' method='post'>
+              <input type='hidden' name='_method' value='delete'>
+              <input type='submit' value='Delete'>
+            </form>
           <% end %>
         </li>
       <% end %>

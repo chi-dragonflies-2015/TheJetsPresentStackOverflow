@@ -21,3 +21,15 @@ put '/comments/:id/edit' do
 
   params[:content]
 end
+
+delete '/comments/:id/delete' do
+  comment = Comment.find(params[:id])
+  question_id = comment.commentable_id
+  comment.destroy
+
+  if request.xhr?
+    params[:id]
+  else
+    redirect "/questions/#{question_id}"
+  end
+end
