@@ -1,3 +1,23 @@
+html {
+  font-size: 1em;
+}
+
+h1 {
+  font-size: 2em!important;
+}
+
+h2 {
+  font-size: 1.8em!important;
+}
+
+h3 {
+  font-size: 1.6em!important;
+}
+
+h4 {
+  font-size: 1.4em!important;
+}
+
 #create-answer{
   display:none;
 }
@@ -19,4 +39,42 @@
 
 .asked-ago {
   border-bottom: 1px solid lightgray;
+}
+
+.comment-delete {
+  border:none;
+  color: #ee6e73;
+  background-color: transparent;
+  padding:0;
+  margin:0;
+}
+
+.comment-delete:focus {
+  outline:none!important;
+}
+
+.btn {
+  margin: 6px 0;
+}
+
+.question-sidebar {
+  position: absolute;
+  left: 214px;
+  top: 83px;
+}
+
+.upvote {
+  display: block;
+  height: 60px;
+}
+
+.downvote {
+  display: block;
+  height: 60px;
+  margin-top: -31px;
+}
+
+.vote_tally {
+  margin: 0;
+  margin-left: 25px;
 }

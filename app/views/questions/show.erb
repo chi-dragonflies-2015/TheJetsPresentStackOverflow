@@ -6,9 +6,9 @@
     <div class="question-sidebar">
       <!-- put in votes, upvote buttons, and best answer check mark -->
       <section id="<%= @question.id %>">
-        <a class="upvote" href="/questions/<%= @question.id %>/upvote"> Upvote</a>
-          <span class='vote_tally'><%= @question.vote_tally %></span>
-        <a class="downvote" href="/questions/<%= @question.id %>/downvote"> Downvote</a>
+        <a class="upvote" href="/questions/<%= @question.id %>/upvote"><i class="medium mdi-navigation-arrow-drop-up"></i></a>
+          <p class='vote_tally'><%= @question.vote_tally %></p>
+        <a class="downvote" href="/questions/<%= @question.id %>/downvote"><i class="medium mdi-navigation-arrow-drop-down"></i></a>
       </section>
 
     </div>
@@ -46,12 +46,14 @@
 </div>
 
 <% if user_authenticated? %>
-<button class="new-answer">New Answer</button>
+<button class="new-answer waves-effect waves-light btn">New Answer</button>
   <form id="create-answer" action="/answers" method="post">
     <input type="text" name="answer[title]" placeholder="optional title"><br>
     <input type="text" name="answer[content]" placeholder="Put your answer here.."><br>
     <input type="hidden" name="question_id" value="<%= @question.id %>">
     <input type="hidden" name="answer[answerer_id]" value="<%= current_user.id %>">
-    <input type="submit" clas="btn" value="Submit Answer">
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+      <i class="mdi-content-send right"></i>
+    </button>
   </form>
 <% end %>

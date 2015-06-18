@@ -18,7 +18,8 @@ $(document).ready(function() {
     });
 
     request.done(function(response){
-      $('.'+response.type+' .comments ul').append(
+      console.log(response);
+      $('.'+response.type).siblings('.comments').children('ul').append(
         $('<li id="comment-'+response.id+'">' + response.content + commentButtons(response.id))
       );
       $('.comment-form textarea').val('');
@@ -134,15 +135,10 @@ $(document).ready(function() {
                           method: "put"
   });
     var response = request.done(function(response){
-
-  $('#' + answer_id + ' .answer-header h1').text(response.title);
-  $('#' + answer_id + ' .answer-content p').text(response.content);
-      // $(startingForm).parent()
-      // $('answer-content').text(response.title);
-      // $()
-      // $('answer-content').text(response.content);
-
-      // $('.edit-answer').hide();
+      $('#' + answer_id + ' .answer-header h1').text(response.title);
+      $('#' + answer_id + ' .answer-content p').text(response.content);
+      $('.edit-button').show();
+      $('.edit-answer').hide();
     })
   });
   $('.answers').on('submit', '#delete-answer', function(event){

@@ -8,7 +8,7 @@
           <a class='comment-edit' href='#'>Edit</a>
           <form class='comment-delete' action='/comments/<%= comment.id %>/delete' method='post'>
             <input type='hidden' name='_method' value='delete'>
-            <input type='submit' value='Delete'>
+            <input class='comment-delete' type='submit' value='Delete'>
           </form>
         <% end %>
       </li>
