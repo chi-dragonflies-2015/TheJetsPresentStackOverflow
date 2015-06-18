@@ -10,5 +10,6 @@ def check_auth
 end
 
 get '/' do
+  @questions = Question.all
   erb :index
 end

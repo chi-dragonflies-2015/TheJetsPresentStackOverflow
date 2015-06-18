@@ -16,4 +16,12 @@ class Question < ActiveRecord::Base
     votes.reduce(:+)
   end
 
+  def days_ago
+    t = Time.now - created_at
+    mm, ss = t.divmod(60)
+    hh, mm = mm.divmod(60)
+    dd, hh = hh.divmod(24)
+    "%d days, %d hours, %d minutes and %d seconds" % [dd, hh, mm, ss]
+  end
+
 end
