@@ -45,10 +45,13 @@
 <% end %>
 </div>
 
+<% if user_authenticated? %>
 <button class="new-answer">New Answer</button>
   <form id="create-answer" action="/answers" method="post">
     <input type="text" name="answer[title]" placeholder="optional title"><br>
     <input type="text" name="answer[content]" placeholder="Put your answer here.."><br>
     <input type="hidden" name="question_id" value="<%= @question.id %>">
+    <input type="hidden" name="answer[answerer_id]" value="<%= current_user.id %>">
     <input type="submit" clas="btn" value="Submit Answer">
   </form>
+<% end %>

@@ -36,7 +36,7 @@ $(document).ready(function() {
     };
 
     $listItem = $(this).parent();
-    commentId = $listItem.attr('id')
+    commentId = $listItem.attr('id').match(/\d+/)[0]
     commentText = $listItem
                     .clone()
                     .children()
@@ -50,7 +50,7 @@ $(document).ready(function() {
     $listItem.on('submit', '#dynaform', function(event){
       event.preventDefault();
 
-      id = $(this).parent().attr('id')
+      id = $(this).parent().attr('id').match(/\d+/)[0]
 
       url = $(this).attr('action');
       data = $(this).serialize();
@@ -215,8 +215,8 @@ $(document).ready(function() {
 // Pick Best Answer
   $('.answers').on("click",'.best-answer-picker a',function(event){
     event.preventDefault();
-    var answer_id = $(this).parents('.answer').attr('id')
-    var path = $(this).attr('href')
+    var answer_id = $(this).parents('.answer').attr('id');
+    var path = $(this).attr('href');
 
     var request = $.ajax({
                           url: path,
@@ -225,8 +225,8 @@ $(document).ready(function() {
     });
 
     var response = request.done(function(){
-      $('.best-answer-picker').hide()
-      $('#' + answer_id + ' .answer-header h1').css("color","green")
+      $('.best-answer-picker').hide();
+      $('#' + answer_id + ' .answer-header h1').css("color","green");
     });
    });
 
