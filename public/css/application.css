@@ -33,7 +33,8 @@ h4 {
   color: green;
 }
 
-#logout,#login, #signup {
+#logout,#login, #signup, #new-question {
+  padding: 0 6px;
   float: right;
 }
 
@@ -81,4 +82,8 @@ h4 {
 .vote_tally {
   margin: 0;
   margin-left: 25px;
+}
+
+form {
+  margin-top: 12px;
 }

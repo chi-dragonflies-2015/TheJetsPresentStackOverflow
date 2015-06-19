@@ -26,13 +26,15 @@
 <% if user_authenticated? && user_authorized?(@question.asker.id) %>
 
 <div class="edit-question">
-  <button><a href="/questions/<%= @question.id %>/edit">Edit Question</a></button>
+  <a class='waves-effect waves-light btn' href="/questions/<%= @question.id %>/edit">Edit Question</a>
 </div>
 
 <div class="delete">
   <form action="/questions/<%= @question.id %>" method="post" class="question_delete">
   <input type="hidden" name="_method" value="delete">
-  <input type="submit" value="Delete Question!">
+    <button class="btn waves-effect waves-light" type="submit" name="action">Delete
+      <i class="mdi-content-send right"></i>
+    </button>
   </form>
 </div>
 <% end %>
