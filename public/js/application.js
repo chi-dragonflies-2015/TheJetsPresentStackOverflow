@@ -2,7 +2,7 @@ $(document).ready(function() {
 
   // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
   function commentButtons (commentId) {
-    return ' <a class="comment-edit" href="#edit">Edit</a><form class="comment-delete" action="/comments/'+commentId+'/delete" method="post"><input type="hidden" name="_method" value="delete"><input type="submit" value="Delete"></form>'
+    return ' <a class="comment-edit" href="#edit">Edit</a><form class="comment-delete" action="/comments/'+commentId+'/delete" method="post"><input type="hidden" name="_method" value="delete"><input class="comment-delete" type="submit" value="Delete"></form>'
   };
 
   $('html').on('submit', '.comment-form', function(event){
@@ -19,7 +19,8 @@ $(document).ready(function() {
     });
 
     request.done(function(response){
-      $('.'+response.type+' .comments ul').append(
+      console.log(response);
+      $('.'+response.type).siblings('.comments').children('ul').append(
         $('<li id="comment-'+response.id+'">' + response.content + commentButtons(response.id))
       );
       $('.comment-form textarea').val('');
@@ -48,7 +49,7 @@ $(document).ready(function() {
                     .text()
                     .trim();
 
-    $listItem.html('<form id="dynaform" action="/comments/'+commentId+'/edit" method="post"><input type="hidden" name="_method" value="put" ><input name="content" type="text" value="'+commentText+'"><input type="submit"></form>');
+    $listItem.html('<form id="dynaform" action="/comments/'+commentId+'/edit" method="post"><input type="hidden" name="_method" value="put" ><input name="content" type="text" value="'+commentText+'">  <button class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="mdi-content-send right"></i></button></form>');
 
     $listItem.on('submit', '#dynaform', function(event){
       event.preventDefault();
@@ -137,15 +138,10 @@ $(document).ready(function() {
                           method: "put"
   });
     var response = request.done(function(response){
-
-  $('#' + answer_id + ' .answer-header h1').text(response.title);
-  $('#' + answer_id + ' .answer-content p').text(response.content);
-      // $(startingForm).parent()
-      // $('answer-content').text(response.title);
-      // $()
-      // $('answer-content').text(response.content);
-
-      // $('.edit-answer').hide();
+      $('#' + answer_id + ' .answer-header h1').text(response.title);
+      $('#' + answer_id + ' .answer-content p').text(response.content);
+      $('.edit-button').show();
+      $('.edit-answer').hide();
     })
   });
   $('.answers').on('submit', '#delete-answer', function(event){

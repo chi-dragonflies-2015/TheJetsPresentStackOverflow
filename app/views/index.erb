@@ -4,12 +4,12 @@
   <div class="question-container">
   <% @questions.each do |question| %>
     <div class="question" id="<%= question.id %>">
+      <a class="question-link"href="/questions/<%= question.id %>"><%= question.title %></a>
       <ul class="inline">
         <li><%= question.vote_tally ? question.vote_tally : 0 %> <br> votes</li>
         <li><%= question.answers.count ? question.answers.count : 0 %> <br> answers</li>
       </ul>
-      <a href="/questions/<%= question.id %>"><%= question.title %></a>
-      <span class="asked-ago">asked <%= question.days_ago %> by <%= question.asker.name %></span>
+      <p class="asked-ago">asked <%= question.days_ago %> by <%= question.asker.name %></p>
     </div>
   <% end %>
   </div>

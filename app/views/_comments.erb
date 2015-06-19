@@ -8,7 +8,7 @@
           <a class='comment-edit' href='#'>Edit</a>
           <form class='comment-delete' action='/comments/<%= comment.id %>/delete' method='post'>
             <input type='hidden' name='_method' value='delete'>
-            <input type='submit' value='Delete'>
+            <input class='comment-delete' type='submit' value='Delete'>
           </form>
         <% end %>
       </li>
@@ -16,9 +16,11 @@
   </ul>
 </div>
 <% if current_user %>
-  <button class='new-comment-button'><a href="#">New Comment</a></button>
+  <button class='new-comment-button waves-effect waves-light btn'>New Comment</button>
   <form class='comment-form' action='/<%= commentable_route %>/<%= commentable.id %>/comments/new' method='post'>
     <textarea name='content' placeholder='Sample Comment'></textarea>
-    <input type='submit'></input>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+      <i class="mdi-content-send right"></i>
+    </button>
   </form>
 <% end %>
