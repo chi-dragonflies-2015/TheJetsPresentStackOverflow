@@ -232,7 +232,7 @@ $(document).ready(function() {
 //Function to show Comment Form
   $('html').on("click",".new-comment-button",function(event){
     event.preventDefault();
-    $(this).siblings('form').show();
+    $(this).next('.comment-form').show();
     $(this).hide();
   });
 
