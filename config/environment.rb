@@ -10,7 +10,7 @@ require 'rubygems'
 
 require 'uri'
 require 'pathname'
-require 'nokogiri'
+# require 'nokogiri'
 require 'net/http'
 
 require 'pg'
